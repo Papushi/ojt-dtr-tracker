@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJT DTR Tracker - 120 Hours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #1a73e8;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: 1px solid #ddd;
+        }
+
+        .tab.active {
+            background: #1a73e8;
+            color: white;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .danger {
+            background: #dc3545;
+        }
+
+        .success {
+            background: #28a745;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="card">
+            <h1>OJT DTR Tracker - 120 Hours Required</h1>
+            <p>Data is saved in your browser automatically</p>
+        </div>
+
+        <!-- Progress -->
+        <div class="card">
+            <h2>Your Progress</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="completed">0</div>
+                    <div>Hours Done</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="remaining">120</div>
+                    <div>Hours Left</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="percent">0%</div>
+                    <div>Complete</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" id="tabDashboard">Dashboard</button>
+            <button class="tab" id="tabAdd">Add Entry</button>
+            <button class="tab" id="tabBulk">Bulk Entry</button>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="section active" id="dashboardSection">
+            <h2>Your Entries</h2>
+            <button class="success" id="exportBtn">Export CSV</button>
+            <button class="danger" id="clearBtn">Clear All</button>
+            <div id="entriesList"></div>
+        </div>
+
+        <!-- Add Entry Section -->
+        <div class="section" id="addSection">
+            <h2>Add Single Entry</h2>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label>Time In:</label>
+                <input type="time" id="timeIn">
+            </div>
+            <div class="form-group">
+                <label>Time Out:</label>
+                <input type="time" id="timeOut">
+            </div>
+            <div class="form-group">
+                <label>Break (minutes):</label>
+                <input type="number" id="break" value="60">
+            </div>
+            <div class="form-group">
+                <label>Category:</label>
+                <select id="category">
+                    <option value="IT">IT</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Engineering">Engineering</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Remarks:</label>
+                <input type="text" id="remarks">
+            </div>
+            <button id="saveBtn">Save Entry</button>
+        </div>
+
+        <!-- Bulk Entry Section -->
+        <div class="section" id="bulkSection">
+            <h2>Bulk Entry (Feb 2-27, 2024)</h2>
+            <div class="form-group">
+                <label>From Date:</label>
+                <input type="date" id="fromDate" value="2024-02-02">
+            </div>
+            <div class="form-group">
+                <label>To Date:</label>
+                <input type="date" id="toDate" value="2024-02-27">
+            </div>
+            <div class="form-group">
+                <label>Time In:</label>
+                <input type="time" id="bulkTimeIn" value="07:00">
+            </div>
+            <div class="form-group">
+                <label>Time Out:</label>
+                <input type="time" id="bulkTimeOut" value="17:00">
+            </div>
+            <div class="form-group">
+                <label>Break:</label>
+                <input type="number" id="bulkBreak" value="60">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="skipWeekends" checked> Skip Weekends
+                </label>
+            </div>
+            <button id="previewBtn">Preview Entries</button>
+
+            <div id="previewArea" style="margin-top: 20px; display: none;">
+                <h3>Preview</h3>
+                <div id="previewTable"></div>
+                <button class="success" id="saveBulkBtn">Save All</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== DATA ==========
+        let entries = [];
+        let bulkPreview = [];
+
+        // ========== LOAD/SAVE ==========
+        function loadData() {
+            let saved = localStorage.getItem('dtrData');
+            if (saved) {
+                entries = JSON.parse(saved);
+            } else {
+                entries = [];
+            }
+            updateDisplay();
+        }
+
+        function saveData() {
+            localStorage.setItem('dtrData', JSON.stringify(entries));
+        }
+
+        // ========== CALCULATE HOURS ==========
+        function calcHours(timeIn, timeOut, breakMin) {
+            if (!timeIn || !timeOut) return 0;
+            let [ih, im] = timeIn.split(':').map(Number);
+            let [oh, om] = timeOut.split(':').map(Number);
+            let total = (oh * 60 + om) - (ih * 60 + im);
+            if (total < 0) total += 24 * 60;
+            total -= (parseInt(breakMin) || 0);
+            return Math.max(0, total / 60);
+        }
+
+        // ========== UPDATE DISPLAY ==========
+        function updateDisplay() {
+            // Calculate totals
+            let total = 0;
+            for (let i = 0; i < entries.length; i++) {
+                total += entries[i].hours || 0;
+            }
+            let remaining = Math.max(0, 120 - total);
+            let percent = Math.min(100, (total / 120) * 100);
+
+            // Update progress
+            document.getElementById('completed').innerHTML = total.toFixed(1);
+            document.getElementById('remaining').innerHTML = remaining.toFixed(1);
+            document.getElementById('percent').innerHTML = percent.toFixed(1) + '%';
+            document.getElementById('progressFill').style.width = percent + '%';
+
+            // Update entries list
+            if (entries.length === 0) {
+                document.getElementById('entriesList').innerHTML = '<p>No entries yet.</p>';
+                return;
+            }
+
+            let html = '<table><tr><th>Date</th><th>Time In</th><th>Time Out</th><th>Hours</th><th>Action</th></tr>';
+            for (let i = 0; i < entries.length; i++) {
+                let e = entries[i];
+                html += '<tr>';
+                html += '<td>' + e.date + '</td>';
+                html += '<td>' + e.timeIn + '</td>';
+                html += '<td>' + e.timeOut + '</td>';
+                html += '<td>' + e.hours.toFixed(1) + '</td>';
+                html += '<td><button onclick="deleteEntry(' + i + ')" class="danger">Delete</button></td>';
+                html += '</tr>';
+            }
+            html += '</table>';
+            document.getElementById('entriesList').innerHTML = html;
+        }
+
+        // ========== DELETE ENTRY ==========
+        function deleteEntry(index) {
+            entries.splice(index, 1);
+            saveData();
+            updateDisplay();
+        }
+
+        // ========== TAB SWITCHING ==========
+        document.getElementById('tabDashboard').onclick = function () {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('dashboardSection').classList.add('active');
+        };
+
+        document.getElementById('tabAdd').onclick = function () {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('addSection').classList.add('active');
+        };
+
+        document.getElementById('tabBulk').onclick = function () {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('bulkSection').classList.add('active');
+        };
+
+        // ========== SAVE SINGLE ENTRY ==========
+        document.getElementById('saveBtn').onclick = function () {
+            let date = document.getElementById('date').value;
+            let timeIn = document.getElementById('timeIn').value;
+            let timeOut = document.getElementById('timeOut').value;
+            let breakMin = document.getElementById('break').value;
+            let category = document.getElementById('category').value;
+            let remarks = document.getElementById('remarks').value;
+
+            if (!date || !timeIn || !timeOut) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            let hours = calcHours(timeIn, timeOut, breakMin);
+
+            let entry = {
+                date: date,
+                timeIn: timeIn,
+                timeOut: timeOut,
+                break: breakMin,
+                category: category,
+                remarks: remarks,
+                hours: hours
+            };
+
+            entries.push(entry);
+            saveData();
+            updateDisplay();
+
+            // Clear form
+            document.getElementById('date').value = '';
+            document.getElementById('timeIn').value = '';
+            document.getElementById('timeOut').value = '';
+            document.getElementById('break').value = '60';
+            document.getElementById('remarks').value = '';
+
+            // Switch to dashboard
+            document.getElementById('tabDashboard').click();
+        };
+
+        // ========== PREVIEW BULK ==========
+        document.getElementById('previewBtn').onclick = function () {
+            let from = new Date(document.getElementById('fromDate').value);
+            let to = new Date(document.getElementById('toDate').value);
+            let skipWeekends = document.getElementById('skipWeekends').checked;
+            let timeIn = document.getElementById('bulkTimeIn').value;
+            let timeOut = document.getElementById('bulkTimeOut').value;
+            let breakMin = document.getElementById('bulkBreak').value;
+
+            bulkPreview = [];
+            let current = new Date(from);
+
+            while (current <= to) {
+                let day = current.getDay();
+                if (!skipWeekends || (day !== 0 && day !== 6)) {
+                    let dateStr = current.toISOString().split('T')[0];
+                    let hours = calcHours(timeIn, timeOut, breakMin);
+                    bulkPreview.push({
+                        date: dateStr,
+                        timeIn: timeIn,
+                        timeOut: timeOut,
+                        break: breakMin,
+                        hours: hours
+                    });
+                }
+                current.setDate(current.getDate() + 1);
+            }
+
+            // Show preview
+            let html = '<table><tr><th>Date</th><th>Day</th><th>Hours</th></tr>';
+            for (let i = 0; i < bulkPreview.length; i++) {
+                let e = bulkPreview[i];
+                let d = new Date(e.date);
+                let dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
+                html += '<tr>';
+                html += '<td>' + e.date + '</td>';
+                html += '<td>' + dayName + '</td>';
+                html += '<td>' + e.hours.toFixed(1) + '</td>';
+                html += '</tr>';
+            }
+            html += '</table>';
+
+            document.getElementById('previewTable').innerHTML = html;
+            document.getElementById('previewArea').style.display = 'block';
+        };
+
+        // ========== SAVE BULK ==========
+        document.getElementById('saveBulkBtn').onclick = function () {
+            for (let i = 0; i < bulkPreview.length; i++) {
+                entries.push(bulkPreview[i]);
+            }
+            saveData();
+            updateDisplay();
+            document.getElementById('previewArea').style.display = 'none';
+            document.getElementById('tabDashboard').click();
+        };
+
+        // ========== EXPORT CSV ==========
+        document.getElementById('exportBtn').onclick = function () {
+            if (entries.length === 0) {
+                alert('No entries to export');
+                return;
+            }
+
+            let csv = 'Date,Time In,Time Out,Hours\n';
+            for (let i = 0; i < entries.length; i++) {
+                let e = entries[i];
+                csv += e.date + ',' + e.timeIn + ',' + e.timeOut + ',' + e.hours.toFixed(2) + '\n';
+            }
+
+            let blob = new Blob([csv], { type: 'text/csv' });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = 'dtr.csv';
+            a.click();
+        };
+
+        // ========== CLEAR ALL ==========
+        document.getElementById('clearBtn').onclick = function () {
+            if (confirm('Delete all entries?')) {
+                entries = [];
+                saveData();
+                updateDisplay();
+            }
+        };
+
+        // ========== INITIALIZE ==========
+        loadData();
+
+        // Set today's date
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').value = today;
+    </script>
+</body>
+
+</html>

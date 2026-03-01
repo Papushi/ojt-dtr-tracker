@@ -2,1699 +2,1741 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OJT Master Tracker | 240 Hours</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>OJT DTR • 240hr</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - Poppins for modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Font: Inter (Android friendly) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
+        /* Android-optimized variables & reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: #0f172a;
+            font-family: 'Inter', sans-serif;
+            background: #0b1120;
             min-height: 100vh;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+            padding: 12px;
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated background */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+        button, .tab-btn, .pill, .android-check, .icon-btn, .stat-tile {
+            touch-action: manipulation;
+            cursor: pointer;
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 500px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        /* Modern Header */
-        .header {
-            background: rgba(255, 255, 255, 0.05);
+        /* Card style */
+        .card {
+            background: rgba(18, 28, 48, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(66, 153, 225, 0.15);
+            border-radius: 32px;
+            padding: 20px;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6);
         }
 
-        @keyframes slideDown {
-            0% { transform: translateY(-100px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        .header-top {
+        .header-row {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotate(10deg);
-            transition: transform 0.3s;
-        }
-
-        .logo-icon:hover {
-            transform: rotate(0deg) scale(1.1);
-        }
-
-        .logo-icon i {
-            font-size: 30px;
-            color: white;
-        }
-
-        .logo-text h1 {
-            color: white;
-            font-size: 2.2em;
+        .logo h1 {
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-        }
-
-        .logo-text span {
-            color: #94a3b8;
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .goal-card {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            padding: 20px 30px;
-            border-radius: 30px;
-            color: white;
-            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 30px 50px -10px rgba(139, 92, 246, 0.7); }
-            100% { box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.5); }
-        }
-
-        .goal-card .label {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        .goal-card .value {
-            font-size: 2.5em;
-            font-weight: 800;
-            line-height: 1;
-        }
-
-        .goal-input-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .goal-input-group input {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 15px;
-            padding: 10px 15px;
-            color: white;
-            font-weight: 600;
-            width: 100px;
-        }
-
-        .goal-input-group button {
-            background: white;
-            border: none;
-            border-radius: 15px;
-            padding: 10px 20px;
-            font-weight: 600;
-            color: #3b82f6;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .goal-input-group button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            padding: 25px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: fadeInUp 0.6s ease backwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item:nth-child(1) { animation-delay: 0.1s; }
-        .stat-item:nth-child(2) { animation-delay: 0.2s; }
-        .stat-item:nth-child(3) { animation-delay: 0.3s; }
-        .stat-item:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.6s;
-        }
-
-        .stat-item:hover::before {
-            opacity: 1;
-        }
-
-        .stat-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(to right, #a5f3fc, #bae6fd, #c7d2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
-
-        .stat-number {
-            font-size: 3em;
-            font-weight: 800;
-            color: white;
-            line-height: 1;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
+        .logo span {
+            font-size: 0.8rem;
             color: #94a3b8;
-            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Goal chip - clickable */
+        .goal-chip {
+            background: #1e293b;
+            border-radius: 60px;
+            padding: 8px 18px;
+            border: 1px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .goal-chip:active {
+            background: #2d3b4f;
+            transform: scale(0.97);
+        }
+        .goal-chip .label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        .goal-chip .value {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #3b82f6;
+        }
+
+        /* Hidden goal input */
+        #goalInput {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        /* Stat grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .stat-tile {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 24px;
+            padding: 18px 8px;
+            text-align: center;
+            border: 1px solid rgba(59,130,246,0.2);
+            transition: 0.15s;
+        }
+        .stat-tile:active {
+            background: #1e293b;
+            transform: scale(0.97);
+        }
+        .stat-tile i {
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 6px;
+        }
+        .stat-tile .number {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .stat-tile .label {
+            font-size: 0.75rem;
+            color: #94a3b8;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        /* Progress Section */
-        .progress-section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Progress area */
+        .progress-area {
+            background: rgba(15, 23, 42, 0.8);
             border-radius: 40px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 18px;
         }
-
         .progress-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #cbd5e1;
         }
-
-        .progress-title {
-            font-size: 1.3em;
-            font-weight: 600;
-        }
-
-        .progress-percent {
-            font-size: 2em;
-            font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
+        .progress-bar-bg {
+            height: 28px;
+            background: #1e293b;
+            border-radius: 30px;
             overflow: hidden;
-            position: relative;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
-
-        .progress-bar-fill {
+        .progress-fill {
             height: 100%;
+            width: 0%;
             background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            border-radius: 15px;
-            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            border-radius: 30px;
+            transition: width 0.4s ease-out;
         }
-
-        .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         .progress-stats {
             display: flex;
-            gap: 30px;
-            color: white;
-            flex-wrap: wrap;
-        }
-
-        .progress-stat {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-stat i {
-            color: #3b82f6;
-        }
-
-        /* Tabs */
-        .tabs-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
+            justify-content: space-between;
+            font-size: 0.85rem;
             color: #94a3b8;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
+        }
+
+        /* Scrollable tabs */
+        .tabs-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .tabs-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .tab-row {
+            display: inline-flex;
             gap: 10px;
-            font-size: 1em;
-            backdrop-filter: blur(10px);
+            padding: 0 2px;
         }
-
+        .tab-btn {
+            background: rgba(20, 30, 50, 0.8);
+            border: 1px solid #2d3a4f;
+            border-radius: 40px;
+            padding: 14px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #b0c4de;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
         .tab-btn i {
-            font-size: 1.2em;
+            font-size: 1.2rem;
         }
-
-        .tab-btn:hover {
-            background: rgba(59, 130, 246, 0.2);
-            color: white;
-            transform: translateY(-3px);
-            border-color: #3b82f6;
-        }
-
         .tab-btn.active {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background: #2563eb;
             color: white;
-            border: none;
-            box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+            box-shadow: 0 10px 20px -8px #1e3a8a;
+        }
+        .tab-btn:active {
+            transform: scale(0.96);
         }
 
         /* Sections */
         .section {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 40px;
-            padding: 35px;
-            margin-bottom: 30px;
             display: none;
-            animation: fadeScale 0.5s ease;
         }
-
-        @keyframes fadeScale {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
         .section.active {
             display: block;
+            animation: fadeSlide 0.25s ease;
+        }
+        @keyframes fadeSlide {
+            0% { opacity: 0.3; transform: translateY(8px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            color: white;
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-bottom: 30px;
+        /* Form fields */
+        .field-group {
+            margin-bottom: 20px;
+        }
+        .field-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b9c9e0;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        .input-wrapper {
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 15px;
         }
-
-        .section-title i {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            padding: 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-        }
-
-        /* Form Grid */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .form-field {
-            position: relative;
-        }
-
-        .form-field label {
-            display: block;
-            color: #94a3b8;
-            margin-bottom: 10px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .field-wrapper {
-            position: relative;
-        }
-
-        .field-wrapper i {
+        .input-wrapper i {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            left: 18px;
             color: #3b82f6;
-            font-size: 1.2em;
-            z-index: 1;
+            font-size: 1.3rem;
+            z-index: 2;
         }
-
-        .field-wrapper input,
-        .field-wrapper select,
-        .field-wrapper textarea {
+        .input-wrapper input,
+        .input-wrapper select,
+        .input-wrapper textarea {
             width: 100%;
-            padding: 18px 20px 18px 55px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            padding: 18px 18px 18px 54px;
+            background: #1a2538;
+            border: 2px solid #2d3f5e;
+            border-radius: 30px;
+            font-size: 1rem;
             color: white;
-            font-size: 1em;
-            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            -webkit-appearance: none;
+            appearance: none;
         }
-
-        .field-wrapper input:focus,
-        .field-wrapper select:focus,
-        .field-wrapper textarea:focus {
-            outline: none;
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
             border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
-            box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
+            outline: none;
+            background: #1f314a;
         }
 
-        .field-wrapper select option {
-            background: #1e293b;
-            color: white;
-        }
-
-        /* Quick time buttons */
-        .quick-times {
+        /* Quick time pills */
+        .quick-pills {
             display: flex;
             gap: 10px;
             margin-top: 12px;
             flex-wrap: wrap;
         }
-
-        .quick-time {
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9em;
+        .pill {
+            background: #26344b;
+            padding: 12px 22px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #b0d4ff;
+            border: 1px solid #3d506e;
+            transition: 0.1s;
+            flex: 1 0 auto;
+            text-align: center;
         }
-
-        .quick-time:hover {
+        .pill:active {
             background: #3b82f6;
             color: white;
-            transform: scale(1.1);
-            border-color: #3b82f6;
+            transform: scale(0.96);
         }
 
-        /* Checkbox styles */
-        .checkbox-wrapper {
+        /* Android checkboxes */
+        .android-check {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            transition: all 0.3s;
+            background: #1e2a3a;
+            border-radius: 40px;
+            padding: 16px 20px;
+            border: 1px solid #334155;
+            margin-bottom: 12px;
+        }
+        .android-check input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            accent-color: #3b82f6;
+            transform: scale(1.2);
+        }
+        .android-check span {
+            font-size: 1rem;
+            color: #e2e8f0;
         }
 
-        .checkbox-wrapper:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-        }
-
-        .checkbox-wrapper input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        /* Button styles */
-        .action-buttons {
+        /* Action buttons */
+        .btn-row {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            gap: 12px;
+            margin: 24px 0 12px;
         }
-
         .btn {
-            padding: 18px 35px;
+            flex: 1 1 auto;
+            padding: 18px 22px;
             border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.1rem;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
+            justify-content: center;
+            gap: 10px;
+            background: #2d3b50;
+            color: white;
+            transition: all 0.15s;
+            border: 1px solid #405770;
+            min-width: 140px;
         }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
         .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-            box-shadow: 0 20px 30px -10px rgba(59, 130, 246, 0.5);
+            background: linear-gradient(145deg, #2563eb, #3b82f6);
+            border: none;
+            box-shadow: 0 12px 20px -12px #1e3a8a;
         }
-
         .btn-success {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
+            background: #059669;
         }
-
-        .btn-warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-
         .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
+            background: #b91c1c;
+        }
+        .btn:active {
+            transform: scale(0.96);
+            filter: brightness(1.2);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.1);
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 30px 40px -15px rgba(59, 130, 246, 0.7);
-        }
-
-        /* Table styles */
-        .table-responsive {
+        /* Table */
+        .table-scroll {
             overflow-x: auto;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.02);
+            border-radius: 28px;
+            background: #111c2e;
+            padding: 4px 0;
+            -webkit-overflow-scrolling: touch;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 500px;
         }
-
         th {
-            background: rgba(59, 130, 246, 0.2);
-            color: white;
-            padding: 18px;
+            background: #1e2f44;
+            color: #b4d0ff;
             font-weight: 600;
+            padding: 16px 10px;
+            font-size: 0.85rem;
             text-align: left;
-            border-bottom: 2px solid rgba(59, 130, 246, 0.3);
         }
-
         td {
-            padding: 18px;
-            color: #e2e8f0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px 10px;
+            border-bottom: 1px solid #253649;
+            color: #d1e0f0;
         }
-
-        tr {
-            transition: all 0.3s;
-        }
-
-        tr:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: scale(1.01);
-        }
-
         .weekend-row {
-            background: rgba(245, 158, 11, 0.1);
+            background: rgba(245, 158, 11, 0.15);
         }
-
         .holiday-row {
-            background: rgba(239, 68, 68, 0.1);
-            animation: holidayGlow 2s infinite;
+            background: rgba(220, 38, 38, 0.2);
         }
-
-        @keyframes holidayGlow {
-            0% { background: rgba(239, 68, 68, 0.1); }
-            50% { background: rgba(239, 68, 68, 0.2); }
-            100% { background: rgba(239, 68, 68, 0.1); }
-        }
-
         .holiday-badge {
-            background: #ef4444;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.8em;
-            margin-left: 10px;
+            background: #b91c1c;
+            padding: 3px 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            margin-left: 6px;
+            white-space: nowrap;
         }
 
         .action-cell {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
-
         .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            background: #253b55;
             border: none;
             color: white;
-            cursor: pointer;
-            transition: all 0.3s;
+            width: 46px;
+            height: 46px;
+            border-radius: 30px;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
-        .icon-btn.edit {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .icon-btn.delete {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-
-        .icon-btn:hover {
-            transform: scale(1.2) rotate(360deg);
-        }
+        .icon-btn.edit { background: #0f766e; }
+        .icon-btn.delete { background: #991b1b; }
 
         /* Modal */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            align-items: center;
+            backdrop-filter: blur(8px);
+            align-items: flex-end;
             justify-content: center;
             z-index: 1000;
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal-content {
-            background: #1e293b;
-            border-radius: 40px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            border: 1px solid rgba(255,255,255,0.1);
-            animation: modalSlide 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: #1e2a3c;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 40px 40px 0 0;
+            padding: 30px 24px;
+            animation: slideUp 0.25s ease;
         }
-
-        @keyframes modalSlide {
-            from { transform: translateY(-100px) scale(0.8); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
         }
-
         .modal-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
             color: white;
+            margin-bottom: 20px;
         }
-
         .modal-close {
-            font-size: 2.5em;
-            cursor: pointer;
+            font-size: 2.4rem;
+            line-height: 1;
             color: #94a3b8;
-            transition: all 0.3s;
-        }
-
-        .modal-close:hover {
-            color: #ef4444;
-            transform: rotate(90deg);
+            cursor: pointer;
         }
 
         /* Toast */
         .toast {
             position: fixed;
             bottom: 30px;
-            right: 30px;
-            background: #1e293b;
-            border-left: 5px solid #10b981;
-            border-radius: 20px;
-            padding: 20px 30px;
+            left: 20px;
+            right: 20px;
+            background: #1e2f44;
+            border-left: 6px solid #10b981;
+            border-radius: 50px;
+            padding: 18px 24px;
             color: white;
+            font-weight: 600;
             display: none;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 30px 50px -20px black;
-            animation: toastSlide 0.3s ease;
-            z-index: 1000;
+            gap: 14px;
+            box-shadow: 0 20px 40px black;
+            z-index: 2000;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
-        @keyframes toastSlide {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Footer */
-        .footer {
+        .footer-note {
             text-align: center;
-            color: #64748b;
-            padding: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 50px;
+            color: #5f7a9a;
+            font-size: 0.8rem;
+            padding: 24px 0 12px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-top">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>OJT Master Tracker</h1>
-                        <span><i class="fas fa-check-circle" style="color: #10b981;"></i> 240 Hours Required</span>
-                    </div>
-                </div>
-                <div class="goal-card">
-                    <div class="label">YOUR GOAL</div>
-                    <div class="value" id="goalDisplay">240</div>
-                    <div class="goal-input-group">
-                        <input type="number" id="goalInput" value="240" min="1" max="1000">
-                        <button id="updateGoalBtn"><i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
+<div class="container">
+    <!-- Header card -->
+    <div class="card">
+        <div class="header-row">
+            <div class="logo">
+                <h1>240·DTR</h1>
+                <span><i class="fas fa-clock"></i> OJT tracker</span>
             </div>
-        </div>
-
-        <!-- Stats Grid -->
-        <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                <div class="stat-number" id="statCompleted">0</div>
-                <div class="stat-label">HOURS DONE</div>
+            <!-- Clickable goal chip -->
+            <div class="goal-chip" id="goalChip">
+                <span class="label">GOAL</span>
+                <span class="value" id="goalDisplay">240</span>
             </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-hourglass-half"></i></div>
-                <div class="stat-number" id="statRemaining">240</div>
-                <div class="stat-label">HOURS LEFT</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
-                <div class="stat-number" id="statDays">0</div>
-                <div class="stat-label">DAYS WORKED</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                <div class="stat-number" id="statAvg">0</div>
-                <div class="stat-label">AVG/DAY</div>
-            </div>
-        </div>
-
-        <!-- Progress Section -->
-        <div class="progress-section">
-            <div class="progress-header">
-                <span class="progress-title"><i class="fas fa-fire" style="color: #f59e0b;"></i> PROGRESS TO 240 HOURS</span>
-                <span class="progress-percent" id="progressPercent">0%</span>
-            </div>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progressFill" style="width: 0%;"></div>
-            </div>
-            <div class="progress-stats">
-                <div class="progress-stat">
-                    <i class="fas fa-flag-checkered"></i>
-                    <span id="progressFraction">0/240 hrs</span>
-                </div>
-                <div class="progress-stat">
-                    <i class="fas fa-rocket"></i>
-                    <span id="progressEstimate">Start adding entries</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="tabs-container">
-            <button class="tab-btn active" id="tabDashboard">
-                <i class="fas fa-home"></i> Dashboard
-            </button>
-            <button class="tab-btn" id="tabAdd">
-                <i class="fas fa-plus-circle"></i> Add Entry
-            </button>
-            <button class="tab-btn" id="tabBulk">
-                <i class="fas fa-layer-group"></i> Bulk Import
-            </button>
-            <button class="tab-btn" id="tabHolidays">
-                <i class="fas fa-glass-cheers"></i> Holidays
-            </button>
-            <button class="tab-btn" id="tabReports">
-                <i class="fas fa-chart-pie"></i> Reports
-            </button>
-        </div>
-
-        <!-- Dashboard Section -->
-        <div class="section active" id="dashboardSection">
-            <div class="section-title">
-                <i class="fas fa-history"></i>
-                Recent Entries
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-success" id="exportBtn">
-                    <i class="fas fa-download"></i> Export CSV
-                </button>
-                <button class="btn btn-outline" id="printBtn">
-                    <i class="fas fa-print"></i> Print
-                </button>
-                <button class="btn btn-danger" id="clearBtn">
-                    <i class="fas fa-trash"></i> Clear All
-                </button>
-            </div>
-            <div class="table-responsive" id="entriesTable"></div>
-        </div>
-
-        <!-- Add Entry Section -->
-        <div class="section" id="addSection">
-            <div class="section-title">
-                <i class="fas fa-pen"></i>
-                Add Single Entry
-            </div>
-            <div class="form-grid">
-                <div class="form-field">
-                    <label><i class="fas fa-calendar"></i> Date</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar-alt"></i>
-                        <input type="date" id="date" class="date-input">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-sun"></i> Time In (AM)</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-sun"></i>
-                        <input type="time" id="timeIn" value="07:00">
-                    </div>
-                    <div class="quick-times">
-                        <span class="quick-time" onclick="setTime('timeIn', '07:00')">7 AM</span>
-                        <span class="quick-time" onclick="setTime('timeIn', '08:00')">8 AM</span>
-                        <span class="quick-time" onclick="setTime('timeIn', '09:00')">9 AM</span>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-moon"></i> Time Out (PM)</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-moon"></i>
-                        <input type="time" id="timeOut" value="17:00">
-                    </div>
-                    <div class="quick-times">
-                        <span class="quick-time" onclick="setTime('timeOut', '17:00')">5 PM</span>
-                        <span class="quick-time" onclick="setTime('timeOut', '18:00')">6 PM</span>
-                        <span class="quick-time" onclick="setTime('timeOut', '19:00')">7 PM</span>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-coffee"></i> Break (minutes)</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-hourglass-half"></i>
-                        <input type="number" id="break" value="60" min="0" max="480">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-tag"></i> Category</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-list"></i>
-                        <select id="category">
-                            <option value="IT/Software">💻 IT/Software</option>
-                            <option value="Admin/HR">📋 Admin/HR</option>
-                            <option value="Engineering">⚙️ Engineering</option>
-                            <option value="Marketing">📊 Marketing</option>
-                            <option value="Other">📌 Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-map-marker-alt"></i> Remarks</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-building"></i>
-                        <input type="text" id="remarks" placeholder="Office / WFH / etc">
-                    </div>
-                </div>
-            </div>
-            <div class="form-grid">
-                <div class="checkbox-wrapper" onclick="toggleHoliday()">
-                    <input type="checkbox" id="isHoliday">
-                    <span><i class="fas fa-glass-cheers"></i> Mark as Holiday (0 hours)</span>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="saveBtn">
-                    <i class="fas fa-save"></i> Save Entry
-                </button>
-            </div>
-        </div>
-
-        <!-- Bulk Import Section -->
-        <div class="section" id="bulkSection">
-            <div class="section-title">
-                <i class="fas fa-layer-group"></i>
-                Bulk Import Entries
-            </div>
-            <div class="form-grid">
-                <div class="form-field">
-                    <label>From Date</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar-alt"></i>
-                        <input type="date" id="bulkFromDate" value="2024-02-01">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>To Date</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar-alt"></i>
-                        <input type="date" id="bulkToDate" value="2024-02-28">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Time In</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-sun"></i>
-                        <input type="time" id="bulkTimeIn" value="07:00">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Time Out</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-moon"></i>
-                        <input type="time" id="bulkTimeOut" value="17:00">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Break</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-hourglass-half"></i>
-                        <input type="number" id="bulkBreak" value="60">
-                    </div>
-                </div>
-            </div>
-            <div class="form-grid">
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="bulkSkipWeekends" checked>
-                    <span><i class="fas fa-umbrella-beach"></i> Skip Weekends</span>
-                </div>
-                <div class="checkbox-wrapper">
-                    <input type="checkbox" id="bulkSkipHolidays" checked>
-                    <span><i class="fas fa-glass-cheers"></i> Skip Holidays</span>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="previewBtn">
-                    <i class="fas fa-eye"></i> Preview
-                </button>
-            </div>
-            <div id="bulkPreviewArea" style="margin-top: 30px; display: none;">
-                <h3 style="color: white; margin-bottom: 20px;">Preview ({{count}} entries)</h3>
-                <div class="table-responsive" id="bulkPreviewTable"></div>
-                <div class="action-buttons">
-                    <button class="btn btn-success" id="saveBulkBtn">
-                        <i class="fas fa-save"></i> Save All
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Holidays Section -->
-        <div class="section" id="holidaysSection">
-            <div class="section-title">
-                <i class="fas fa-glass-cheers"></i>
-                Manage Holidays
-            </div>
-            <div class="form-grid">
-                <div class="form-field">
-                    <label>Holiday Date</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar"></i>
-                        <input type="date" id="holidayDate">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Holiday Name</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-tag"></i>
-                        <input type="text" id="holidayName" placeholder="e.g., Christmas">
-                    </div>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="addHolidayBtn">
-                    <i class="fas fa-plus"></i> Add Holiday
-                </button>
-            </div>
-            <div class="table-responsive" style="margin-top: 30px;" id="holidaysTable"></div>
-        </div>
-
-        <!-- Reports Section -->
-        <div class="section" id="reportsSection">
-            <div class="section-title">
-                <i class="fas fa-chart-pie"></i>
-                Reports & Analytics
-            </div>
-            <div class="stats-grid" style="margin-bottom: 30px;">
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-calendar-week"></i></div>
-                    <div class="stat-number" id="reportWeek">0</div>
-                    <div class="stat-label">THIS WEEK</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="stat-number" id="reportMonth">0</div>
-                    <div class="stat-label">THIS MONTH</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                    <div class="stat-number" id="reportAvg">0</div>
-                    <div class="stat-label">AVG DAILY</div>
-                </div>
-            </div>
-            <div class="form-grid">
-                <div class="form-field">
-                    <label>From</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar"></i>
-                        <input type="date" id="filterFrom">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>To</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar"></i>
-                        <input type="date" id="filterTo">
-                    </div>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="filterBtn">
-                    <i class="fas fa-filter"></i> Apply Filter
-                </button>
-            </div>
-            <div class="table-responsive" style="margin-top: 30px;" id="filteredTable"></div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <i class="fas fa-heart" style="color: #ef4444;"></i> OJT Master Tracker | 240 Hours Edition | Data saved in your browser
+            <!-- Hidden input for goal -->
+            <input type="number" id="goalInput" value="240" min="1" max="1000">
         </div>
     </div>
 
-    <!-- Edit Modal -->
-    <div class="modal" id="editModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 style="color: white;"><i class="fas fa-edit"></i> Edit Entry</h2>
-                <span class="modal-close" onclick="closeModal()">&times;</span>
-            </div>
-            <form id="editForm">
-                <input type="hidden" id="editId">
-                <div class="form-field">
-                    <label>Date</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-calendar"></i>
-                        <input type="date" id="editDate" required>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Time In</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-sun"></i>
-                        <input type="time" id="editTimeIn" required>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Time Out</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-moon"></i>
-                        <input type="time" id="editTimeOut" required>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Break</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-hourglass-half"></i>
-                        <input type="number" id="editBreak" required>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Category</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-list"></i>
-                        <select id="editCategory">
-                            <option value="IT/Software">IT/Software</option>
-                            <option value="Admin/HR">Admin/HR</option>
-                            <option value="Engineering">Engineering</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Remarks</label>
-                    <div class="field-wrapper">
-                        <i class="fas fa-building"></i>
-                        <input type="text" id="editRemarks">
-                    </div>
-                </div>
-                <div class="checkbox-wrapper" style="margin: 20px 0;">
-                    <input type="checkbox" id="editIsHoliday">
-                    <span>Holiday (0 hours)</span>
-                </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
-            </form>
+    <!-- Stats 2x2 -->
+    <div class="stat-grid">
+        <div class="stat-tile">
+            <i class="fas fa-check-circle"></i>
+            <div class="number" id="statCompleted">0</div>
+            <div class="label">HOURS</div>
+        </div>
+        <div class="stat-tile">
+            <i class="fas fa-hourglass-half"></i>
+            <div class="number" id="statRemaining">240</div>
+            <div class="label">LEFT</div>
+        </div>
+        <div class="stat-tile">
+            <i class="fas fa-calendar-day"></i>
+            <div class="number" id="statDays">0</div>
+            <div class="label">DAYS</div>
+        </div>
+        <div class="stat-tile">
+            <i class="fas fa-chart-line"></i>
+            <div class="number" id="statAvg">0</div>
+            <div class="label">AVG</div>
         </div>
     </div>
 
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
+    <!-- Progress card -->
+    <div class="progress-area">
+        <div class="progress-header">
+            <span><i class="fas fa-flag-checkered" style="color:#3b82f6;"></i> <span id="goalDisplay2">240</span> hours target</span>
+            <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-fill" id="progressFill" style="width:0%;"></div>
+        </div>
+        <div class="progress-stats">
+            <span id="progressFraction">0/240</span>
+            <span id="progressEstimate">add entries</span>
+        </div>
+    </div>
 
-    <script>
-        // ==================== DATA ====================
-        let entries = [];
-        let holidays = [];
-        let goalHours = 240;
-        let bulkPreview = [];
+    <!-- Tabs (scrollable) -->
+    <div class="tabs-wrapper">
+        <div class="tab-row">
+            <button class="tab-btn active" id="tabDashboard"><i class="fas fa-home"></i> Home</button>
+            <button class="tab-btn" id="tabAdd"><i class="fas fa-plus-circle"></i> Add</button>
+            <button class="tab-btn" id="tabBulk"><i class="fas fa-layer-group"></i> Bulk</button>
+            <button class="tab-btn" id="tabHolidays"><i class="fas fa-glass-cheers"></i> Holidays</button>
+            <button class="tab-btn" id="tabReports"><i class="fas fa-chart-pie"></i> Stats</button>
+        </div>
+    </div>
 
-        // Default holidays
-        const defaultHolidays = [
-            { date: '2024-01-01', name: 'New Year' },
-            { date: '2024-04-09', name: 'Araw ng Kagitingan' },
-            { date: '2024-04-10', name: 'Maundy Thursday' },
-            { date: '2024-04-11', name: 'Good Friday' },
-            { date: '2024-05-01', name: 'Labor Day' },
-            { date: '2024-06-12', name: 'Independence Day' },
-            { date: '2024-08-26', name: 'National Heroes Day' },
-            { date: '2024-11-01', name: 'All Saints' },
-            { date: '2024-11-02', name: 'All Souls' },
-            { date: '2024-11-30', name: 'Bonifacio Day' },
-            { date: '2024-12-08', name: 'Immaculate Conception' },
-            { date: '2024-12-25', name: 'Christmas' },
-            { date: '2024-12-30', name: 'Rizal Day' },
-            { date: '2024-12-31', name: 'Last Day' }
-        ];
+    <!-- Dashboard -->
+    <div class="section active" id="dashboardSection">
+        <div class="btn-row">
+            <button class="btn btn-success" id="exportBtn"><i class="fas fa-download"></i> CSV</button>
+            <button class="btn" id="printBtn"><i class="fas fa-print"></i> Print</button>
+            <button class="btn btn-danger" id="clearBtn"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <div class="table-scroll" id="entriesTable"></div>
+    </div>
 
-        // ==================== LOAD/SAVE ====================
-        function loadData() {
-            try {
-                const saved = localStorage.getItem('ojtMasterData');
-                if (saved) entries = JSON.parse(saved);
+    <!-- Add single -->
+    <div class="section" id="addSection">
+        <div class="field-group">
+            <label><i class="fas fa-calendar"></i> Date</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="date">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Time In (AM)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-sun"></i>
+                <input type="time" id="timeIn" value="07:00">
+            </div>
+            <div class="quick-pills">
+                <span class="pill" onclick="setTime('timeIn','07:00')">7am</span>
+                <span class="pill" onclick="setTime('timeIn','08:00')">8am</span>
+                <span class="pill" onclick="setTime('timeIn','09:00')">9am</span>
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Time Out (PM)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-moon"></i>
+                <input type="time" id="timeOut" value="17:00">
+            </div>
+            <div class="quick-pills">
+                <span class="pill" onclick="setTime('timeOut','17:00')">5pm</span>
+                <span class="pill" onclick="setTime('timeOut','18:00')">6pm</span>
+                <span class="pill" onclick="setTime('timeOut','19:00')">7pm</span>
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Break (min)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-mug-hot"></i>
+                <input type="number" id="break" value="60" min="0" step="5">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Category</label>
+            <div class="input-wrapper">
+                <i class="fas fa-tag"></i>
+                <select id="category">
+                    <option value="IT/Software">💻 IT/Software</option>
+                    <option value="Admin/HR">📋 Admin/HR</option>
+                    <option value="Engineering">⚙️ Engineering</option>
+                    <option value="Marketing">📊 Marketing</option>
+                </select>
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Remarks</label>
+            <div class="input-wrapper">
+                <i class="fas fa-building"></i>
+                <input type="text" id="remarks" placeholder="Office / WFH">
+            </div>
+        </div>
 
-                const savedHolidays = localStorage.getItem('ojtHolidays');
-                if (savedHolidays) {
-                    holidays = JSON.parse(savedHolidays);
-                } else {
-                    holidays = defaultHolidays;
-                    saveHolidays();
-                }
+        <div class="android-check" onclick="toggleHoliday()">
+            <input type="checkbox" id="isHoliday">
+            <span><i class="fas fa-glass-cheers"></i> Holiday (0 hours)</span>
+        </div>
 
-                const savedGoal = localStorage.getItem('ojtGoal');
-                if (savedGoal) {
-                    goalHours = parseInt(savedGoal);
-                    document.getElementById('goalDisplay').innerText = goalHours;
-                    document.getElementById('goalInput').value = goalHours;
-                }
-            } catch (e) {
-                holidays = defaultHolidays;
-            }
-            updateAll();
-        }
+        <div class="btn-row">
+            <button class="btn btn-primary" id="saveBtn"><i class="fas fa-save"></i> Save entry</button>
+        </div>
+    </div>
 
-        function saveData() {
-            localStorage.setItem('ojtMasterData', JSON.stringify(entries));
-        }
+    <!-- Bulk section -->
+    <div class="section" id="bulkSection">
+        <div class="field-group">
+            <label>From</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="bulkFromDate" value="2024-02-01">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>To</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="bulkToDate" value="2024-02-28">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Time In</label>
+            <div class="input-wrapper">
+                <i class="fas fa-sun"></i>
+                <input type="time" id="bulkTimeIn" value="07:00">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Time Out</label>
+            <div class="input-wrapper">
+                <i class="fas fa-moon"></i>
+                <input type="time" id="bulkTimeOut" value="17:00">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Break (min)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-hourglass-half"></i>
+                <input type="number" id="bulkBreak" value="60">
+            </div>
+        </div>
 
-        function saveHolidays() {
-            localStorage.setItem('ojtHolidays', JSON.stringify(holidays));
-        }
+        <div class="android-check">
+            <input type="checkbox" id="bulkSkipWeekends" checked>
+            <span>⛱️ Skip weekends</span>
+        </div>
+        <div class="android-check">
+            <input type="checkbox" id="bulkSkipHolidays" checked>
+            <span>🎉 Skip holidays</span>
+        </div>
 
-        // ==================== HELPERS ====================
-        function isWeekend(dateStr) {
-            const date = new Date(dateStr);
-            return date.getDay() === 0 || date.getDay() === 6;
-        }
+        <button class="btn btn-primary" id="previewBtn"><i class="fas fa-eye"></i> Preview</button>
 
-        function isHoliday(dateStr) {
-            return holidays.some(h => h.date === dateStr);
-        }
+        <div id="bulkPreviewArea" style="margin-top:24px; display:none;">
+            <div class="table-scroll" id="bulkPreviewTable"></div>
+            <button class="btn btn-success" id="saveBulkBtn" style="margin-top:16px;"><i class="fas fa-save"></i> Save all</button>
+        </div>
+    </div>
 
-        function getHolidayName(dateStr) {
-            const h = holidays.find(h => h.date === dateStr);
-            return h ? h.name : '';
-        }
+    <!-- Holidays -->
+    <div class="section" id="holidaysSection">
+        <div class="field-group">
+            <label>Date</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="holidayDate">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Holiday name</label>
+            <div class="input-wrapper">
+                <i class="fas fa-tag"></i>
+                <input type="text" id="holidayName" placeholder="e.g. Christmas">
+            </div>
+        </div>
+        <button class="btn btn-primary" id="addHolidayBtn"><i class="fas fa-plus"></i> Add holiday</button>
+        <div class="table-scroll" style="margin-top:24px;" id="holidaysTable"></div>
+    </div>
 
-        function calcHours(timeIn, timeOut, breakMin, isHoliday) {
-            if (isHoliday) return 0;
-            const [ih, im] = timeIn.split(':').map(Number);
-            const [oh, om] = timeOut.split(':').map(Number);
-            let total = (oh * 60 + om) - (ih * 60 + im);
-            if (total < 0) total += 24 * 60;
-            total -= parseInt(breakMin) || 0;
-            return Math.max(0, total / 60);
-        }
+    <!-- Reports -->
+    <div class="section" id="reportsSection">
+        <div class="stat-grid">
+            <div class="stat-tile">
+                <i class="fas fa-calendar-week"></i>
+                <div class="number" id="reportWeek">0</div>
+                <div class="label">THIS WEEK</div>
+            </div>
+            <div class="stat-tile">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="number" id="reportMonth">0</div>
+                <div class="label">THIS MONTH</div>
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Filter from</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="filterFrom">
+            </div>
+        </div>
+        <div class="field-group">
+            <label>Filter to</label>
+            <div class="input-wrapper">
+                <i class="fas fa-calendar"></i>
+                <input type="date" id="filterTo">
+            </div>
+        </div>
+        <button class="btn btn-primary" id="filterBtn"><i class="fas fa-filter"></i> Apply filter</button>
+        <div class="table-scroll" style="margin-top:24px;" id="filteredTable"></div>
+    </div>
 
-        function setTime(id, time) {
-            document.getElementById(id).value = time;
-        }
+    <!-- Footer -->
+    <div class="footer-note">
+        <i class="fas fa-heart" style="color:#ef4444;"></i> Data saves in your phone
+    </div>
+</div>
 
-        function toggleHoliday() {
-            const cb = document.getElementById('isHoliday');
-            cb.checked = !cb.checked;
-        }
+<!-- Edit Modal -->
+<div class="modal" id="editModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="color:white;"><i class="fas fa-edit"></i> Edit entry</h2>
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="editForm">
+            <input type="hidden" id="editId">
+            <div class="field-group">
+                <label>Date</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" id="editDate" required>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Time In</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-sun"></i>
+                    <input type="time" id="editTimeIn" required>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Time Out</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-moon"></i>
+                    <input type="time" id="editTimeOut" required>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Break</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-hourglass-half"></i>
+                    <input type="number" id="editBreak" required>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Category</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-tag"></i>
+                    <select id="editCategory">
+                        <option value="IT/Software">IT/Software</option>
+                        <option value="Admin/HR">Admin/HR</option>
+                        <option value="Engineering">Engineering</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Remarks</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-building"></i>
+                    <input type="text" id="editRemarks">
+                </div>
+            </div>
+            <div class="android-check">
+                <input type="checkbox" id="editIsHoliday">
+                <span>Holiday</span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+    </div>
+</div>
 
-        // ==================== UPDATE UI ====================
-        function updateAll() {
-            let total = 0;
-            let days = 0;
-            entries.forEach(e => {
-                if (!e.isHoliday) {
-                    total += e.hours || 0;
-                    days++;
-                }
-            });
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
-            const remaining = Math.max(0, goalHours - total);
-            const percent = Math.min(100, (total / goalHours) * 100);
-            const avg = days > 0 ? (total / days).toFixed(1) : 0;
+<script>
+    // ==================== DATA ====================
+    let entries = [];
+    let holidays = [];
+    let goalHours = 240;
+    let bulkPreview = [];
 
-            // Update stats
-            document.getElementById('statCompleted').innerText = total.toFixed(1);
-            document.getElementById('statRemaining').innerText = remaining.toFixed(1);
-            document.getElementById('statDays').innerText = days;
-            document.getElementById('statAvg').innerText = avg;
-            document.getElementById('progressPercent').innerText = percent.toFixed(1) + '%';
-            document.getElementById('progressFill').style.width = percent + '%';
-            document.getElementById('progressFraction').innerHTML = `${total.toFixed(1)}/${goalHours} hrs`;
+    // Default holidays
+    const defaultHolidays = [
+        { date: '2024-01-01', name: 'New Year' },
+        { date: '2024-04-09', name: 'Araw ng Kagitingan' },
+        { date: '2024-04-10', name: 'Maundy Thursday' },
+        { date: '2024-04-11', name: 'Good Friday' },
+        { date: '2024-05-01', name: 'Labor Day' },
+        { date: '2024-06-12', name: 'Independence Day' },
+        { date: '2024-08-26', name: 'National Heroes Day' },
+        { date: '2024-11-01', name: 'All Saints' },
+        { date: '2024-11-02', name: 'All Souls' },
+        { date: '2024-11-30', name: 'Bonifacio Day' },
+        { date: '2024-12-08', name: 'Immaculate Conception' },
+        { date: '2024-12-25', name: 'Christmas' },
+        { date: '2024-12-30', name: 'Rizal Day' },
+        { date: '2024-12-31', name: 'Last Day' }
+    ];
 
-            // Estimate
-            if (days > 0) {
-                const rate = total / days;
-                const needed = goalHours - total;
-                const daysNeeded = Math.ceil(needed / rate);
-                document.getElementById('progressEstimate').innerHTML = `<i class="fas fa-calendar"></i> ~${daysNeeded} more days at current pace`;
-            }
+    // ==================== LOAD/SAVE ====================
+    function loadData() {
+        try {
+            // Load entries
+            const saved = localStorage.getItem('ojtMasterData');
+            if (saved) entries = JSON.parse(saved);
 
-            displayEntries();
-            displayHolidays();
-            updateReports();
-        }
-
-        function displayEntries() {
-            if (entries.length === 0) {
-                document.getElementById('entriesTable').innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 50px;">No entries yet. Start adding!</p>';
-                return;
-            }
-
-            const sorted = [...entries].sort((a, b) => new Date(b.date) - new Date(a.date));
-            let html = '<table><tr><th>Date</th><th>Day</th><th>Time In</th><th>Time Out</th><th>Hours</th><th>Category</th><th>Actions</th></tr>';
-
-            sorted.forEach(e => {
-                const weekend = isWeekend(e.date);
-                const holiday = isHoliday(e.date);
-                const holidayName = getHolidayName(e.date);
-                let rowClass = '';
-                if (weekend) rowClass = 'weekend-row';
-                if (holiday) rowClass = 'holiday-row';
-
-                html += `<tr class="${rowClass}">
-                    <td>${e.date} ${holiday ? `<span class="holiday-badge">${holidayName}</span>` : ''}</td>
-                    <td>${new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' })}</td>
-                    <td>${e.timeIn || '-'}</td>
-                    <td>${e.timeOut || '-'}</td>
-                    <td><strong>${e.isHoliday ? '0' : e.hours.toFixed(1)}</strong></td>
-                    <td>${e.category || '-'}</td>
-                    <td class="action-cell">
-                        <button class="icon-btn edit" onclick="editEntry('${e.id}')"><i class="fas fa-edit"></i></button>
-                        <button class="icon-btn delete" onclick="deleteEntry('${e.id}')"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>`;
-            });
-
-            html += '</table>';
-            document.getElementById('entriesTable').innerHTML = html;
-        }
-
-        function displayHolidays() {
-            let html = '<table><tr><th>Date</th><th>Holiday</th><th>Day</th><th>Action</th></tr>';
-            holidays.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(h => {
-                const day = new Date(h.date).toLocaleDateString('en-US', { weekday: 'long' });
-                html += `<tr>
-                    <td>${h.date}</td>
-                    <td><i class="fas fa-glass-cheers"></i> ${h.name}</td>
-                    <td>${day}</td>
-                    <td><button class="icon-btn delete" onclick="deleteHoliday('${h.date}')"><i class="fas fa-trash"></i></button></td>
-                </tr>`;
-            });
-            document.getElementById('holidaysTable').innerHTML = html;
-        }
-
-        function updateReports() {
-            const now = new Date();
-            const weekStart = new Date(now);
-            weekStart.setDate(now.getDate() - now.getDay());
-            const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-
-            let weekTotal = 0, monthTotal = 0, total = 0, days = 0;
-            entries.forEach(e => {
-                if (e.isHoliday) return;
-                const d = new Date(e.date);
-                if (d >= weekStart) weekTotal += e.hours;
-                if (d >= monthStart) monthTotal += e.hours;
-                total += e.hours;
-                days++;
-            });
-
-            document.getElementById('reportWeek').innerText = weekTotal.toFixed(1);
-            document.getElementById('reportMonth').innerText = monthTotal.toFixed(1);
-            document.getElementById('reportAvg').innerText = days > 0 ? (total / days).toFixed(1) : '0';
-        }
-
-        // ==================== TAB SWITCHING ====================
-        document.getElementById('tabDashboard').onclick = function() {
-            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('dashboardSection').classList.add('active');
-        };
-
-        document.getElementById('tabAdd').onclick = function() {
-            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('addSection').classList.add('active');
-            document.getElementById('date').value = new Date().toISOString().split('T')[0];
-        };
-
-        document.getElementById('tabBulk').onclick = function() {
-            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('bulkSection').classList.add('active');
-        };
-
-        document.getElementById('tabHolidays').onclick = function() {
-            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('holidaysSection').classList.add('active');
-            displayHolidays();
-        };
-
-        document.getElementById('tabReports').onclick = function() {
-            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('reportsSection').classList.add('active');
-            updateReports();
-        };
-
-        // ==================== UPDATE GOAL ====================
-        document.getElementById('updateGoalBtn').onclick = function() {
-            const newGoal = parseInt(document.getElementById('goalInput').value);
-            if (newGoal && newGoal > 0) {
-                goalHours = newGoal;
-                document.getElementById('goalDisplay').innerText = goalHours;
-                localStorage.setItem('ojtGoal', goalHours);
-                updateAll();
-                showToast(`Goal updated to ${goalHours} hours!`);
-            }
-        };
-
-        // ==================== SAVE ENTRY ====================
-        document.getElementById('saveBtn').onclick = function() {
-            const date = document.getElementById('date').value;
-            const timeIn = document.getElementById('timeIn').value;
-            const timeOut = document.getElementById('timeOut').value;
-            const breakMin = document.getElementById('break').value;
-            const category = document.getElementById('category').value;
-            const remarks = document.getElementById('remarks').value;
-            const isHoliday = document.getElementById('isHoliday').checked;
-
-            if (!date) {
-                showToast('Please select date', 'error');
-                return;
-            }
-
-            const hours = calcHours(timeIn, timeOut, breakMin, isHoliday);
-
-            const entry = {
-                id: Date.now().toString(),
-                date, timeIn, timeOut,
-                break: breakMin,
-                category, remarks,
-                isHoliday, hours
-            };
-
-            const existing = entries.findIndex(e => e.date === date);
-            if (existing >= 0) {
-                if (confirm('Replace existing entry?')) entries[existing] = entry;
-                else return;
+            // Load holidays
+            const savedHolidays = localStorage.getItem('ojtHolidays');
+            if (savedHolidays) {
+                holidays = JSON.parse(savedHolidays);
             } else {
-                entries.push(entry);
+                holidays = defaultHolidays;
+                saveHolidays();
             }
 
-            entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+            // Load goal - FIXED: Now saves and loads correctly
+            const savedGoal = localStorage.getItem('ojtGoal');
+            if (savedGoal) {
+                goalHours = parseInt(savedGoal);
+            } else {
+                goalHours = 240;
+            }
+            
+            // Update all displays with loaded goal
+            document.getElementById('goalDisplay').innerText = goalHours;
+            document.getElementById('goalDisplay2').innerText = goalHours;
+            document.getElementById('goalInput').value = goalHours;
+
+        } catch (e) {
+            holidays = defaultHolidays;
+        }
+        updateAll();
+    }
+
+    function saveData() {
+        localStorage.setItem('ojtMasterData', JSON.stringify(entries));
+    }
+
+    function saveHolidays() {
+        localStorage.setItem('ojtHolidays', JSON.stringify(holidays));
+    }
+
+    function saveGoal() {
+        localStorage.setItem('ojtGoal', goalHours.toString());
+    }
+
+    // ==================== HELPERS ====================
+    function isWeekend(dateStr) {
+        const date = new Date(dateStr);
+        return date.getDay() === 0 || date.getDay() === 6;
+    }
+
+    function isHoliday(dateStr) {
+        return holidays.some(h => h.date === dateStr);
+    }
+
+    function getHolidayName(dateStr) {
+        const h = holidays.find(h => h.date === dateStr);
+        return h ? h.name : '';
+    }
+
+    function calcHours(timeIn, timeOut, breakMin, isHoliday) {
+        if (isHoliday) return 0;
+        if (!timeIn || !timeOut) return 0;
+        const [ih, im] = timeIn.split(':').map(Number);
+        const [oh, om] = timeOut.split(':').map(Number);
+        let total = (oh * 60 + om) - (ih * 60 + im);
+        if (total < 0) total += 24 * 60;
+        total -= parseInt(breakMin) || 0;
+        return Math.max(0, total / 60);
+    }
+
+    function setTime(id, time) {
+        document.getElementById(id).value = time;
+    }
+
+    function toggleHoliday() {
+        const cb = document.getElementById('isHoliday');
+        cb.checked = !cb.checked;
+    }
+
+    // ==================== UPDATE UI ====================
+    function updateAll() {
+        let total = 0;
+        let days = 0;
+        entries.forEach(e => {
+            if (!e.isHoliday) {
+                total += e.hours || 0;
+                days++;
+            }
+        });
+
+        const remaining = Math.max(0, goalHours - total);
+        const percent = Math.min(100, (total / goalHours) * 100);
+        const avg = days > 0 ? (total / days).toFixed(1) : 0;
+
+        // Update stats
+        document.getElementById('statCompleted').innerText = total.toFixed(1);
+        document.getElementById('statRemaining').innerText = remaining.toFixed(1);
+        document.getElementById('statDays').innerText = days;
+        document.getElementById('statAvg').innerText = avg;
+        document.getElementById('progressPercent').innerText = percent.toFixed(1) + '%';
+        document.getElementById('progressFill').style.width = percent + '%';
+        document.getElementById('progressFraction').innerHTML = `${total.toFixed(1)}/${goalHours} hrs`;
+
+        // Update goal displays
+        document.getElementById('goalDisplay').innerText = goalHours;
+        document.getElementById('goalDisplay2').innerText = goalHours;
+
+        // Estimate
+        if (days > 0) {
+            const rate = total / days;
+            const needed = goalHours - total;
+            const daysNeeded = Math.ceil(needed / rate);
+            document.getElementById('progressEstimate').innerHTML = `<i class="fas fa-calendar"></i> ~${daysNeeded} more days`;
+        } else {
+            document.getElementById('progressEstimate').innerHTML = 'add entries';
+        }
+
+        displayEntries();
+        displayHolidays();
+        updateReports();
+    }
+
+    function displayEntries() {
+        if (entries.length === 0) {
+            document.getElementById('entriesTable').innerHTML0) {
+            document.getElementById('entriesTable').innerHTML = '<p style="color: #94a3b8; text-align: center; padding = '<p style="color: #94a3b8; text-align: center; padding: 30px;">No entries yet: 30px;">No entries yet</</p>';
+           p>';
+            return;
+        }
+
+        const sorted return;
+        }
+
+        const sorted = [...entries]. = [...entries].sort((a, b) => new Date(b.date) - new Date(asort((a, b) => new Date(b.date) - new Date(a.date));
+.date));
+        let html = '<table        let html = '<table><tr><th><tr><th>Date</th><th>Date</th><th>Day</th>Day</th><th>Time</th><th>Hours</th><th>Action</th></tr>';
+
+        sorted.forEach(e => {
+            const weekend = isWeekend(e.date);
+            const holiday = isHoliday(e.date);
+            const holidayName = getHolidayName(e.date);
+            let rowClass = '';
+            if (weekend) rowClass = 'weekend-row';
+            if (holiday) rowClass = 'holiday-row';
+
+            html += `<tr class="${rowClass}">
+                <td>${e.date} ${holiday ? `<span class="holiday-badge">${holidayName}</span>` : ''}</td>
+                <td>${new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' })}</td>
+                <td>${e.timeIn || ''}-${e.timeOut || ''}</td>
+                <td><strong>${e.isHoliday ? '0'><th>Time</th><th>Hours</th><th>Action</th></tr>';
+
+        sorted.forEach(e => {
+            const weekend = isWeekend(e.date);
+            const holiday = isHoliday(e.date);
+            const holidayName = getHolidayName(e.date);
+            let rowClass = '';
+            if (weekend) rowClass = 'weekend-row';
+            if (holiday) rowClass = 'holiday-row';
+
+            html += `<tr class="${rowClass}">
+                <td>${e.date} ${holiday ? `<span class="holiday-badge">${holidayName}</span>` : ''}</td>
+                <td>${new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' })}</td>
+                <td>${e.timeIn || ''}-${e.timeOut || ''}</td>
+                <td><strong>${e.isHoliday ? '0' : e.hours.toFixed(1)}</strong></td>
+                <td class="action-cell">
+                    : e.hours.toFixed(1)}</strong></td>
+                <td class="action-cell">
+                    <button class="icon-btn edit" onclick="editEntry('${e.id} <button class="icon-btn edit" onclick="editEntry('${e.id}')"><i class="fas fa-edit"></i></button>
+                    <button class="icon-btn delete" onclick="deleteEntry('${e.id}')"><i class="fas fa-trash"></i></')"><i class="fas fa-edit"></i></button>
+                    <button class="icon-btn delete" onclick="deleteEntry('${e.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </button>
+                </td>
+            </tr>`;
+        });
+
+       tr>`;
+        });
+
+        document.getElementById('entriesTable').innerHTML document.getElementById('entries = html;
+   Table').innerHTML = html }
+
+   ;
+    }
+
+    function displayHolidays() function displayHolidays() {
+        let html = {
+        let html '<table><tr = '<table><th>Date</><tr><th>Date</th><th>Holidthay</th><th>Holiday</><th>th><th>Action</th></tr>';
+Action</th></tr>';
+        holidays.sort((a,        holidays.sort(( b) => new Date(a.date)a, b) => new Date(a.date) - new Date(b.date)). - new Date(bforEach(h => {
+            html +=.date)).forEach(h => {
+            html += `<tr>
+                <td>${h `<tr>
+                <td>${h.date}</td>
+                <td.date}</td>
+                <td><i class="fas><i class fa-glass-cheers="fas fa-glass-cheers"></i> ${h.name}</td>
+                <td><button class="icon-btn delete" onclick="deleteHoliday('${h.date}')"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        document.getElementById('holidaysTable').innerHTML = html;
+    }
+
+    function updateReports() {
+        const now = new Date();
+        const weekStart = new Date(now);
+        weekStart.setDate(now.getDate() - now.getDay());
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        let weekTotal = 0, monthTotal = 0;
+        entries.forEach(e => {
+            if (e.isHoliday) return;
+            const d = new Date(e.date);
+            if (d >= week"></i> ${h.name}</td>
+                <td><button class="icon-btn delete" onclick="deleteHoliday('${h.date}')"><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+        });
+        document.getElementById('holidaysTable').innerHTML = html;
+    }
+
+    function updateReports() {
+        const now = new Date();
+        const weekStart = new Date(now);
+        weekStart.setDate(now.getDate() - now.getDay());
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        let weekTotal = 0, monthTotal = 0;
+        entries.forEach(e => {
+            if (e.isHoliday) return;
+            const d = new Date(e.date);
+            if (d >= weekStart) weekTotal += e.hours;
+            if (d >= monthStart) monthTotal += e.hours;
+        });
+
+        document.getElementById('reportWeek').innerStart) weekTotal += e.hours;
+            if (d >= monthStart) monthTotal += e.hours;
+        });
+
+        document.getElementById('reportWeek').innerText = weekTotal.toFixed(1);
+        document.getElementById('reportMonth').innerText = monthTotal.toText = weekTotal.toFixed(1);
+        document.getElementById('reportMonth').innerText = monthTotal.toFixed(Fixed(1);
+    }
+
+    // =================1);
+    }
+
+    // ==================== TAB SWITCH=== TABING =================== SWITCHING ====================
+    document.getElementById=
+    document.getElementById('tab('tabDashboard').onclickDashboard').onclick = function() {
+ = function() {
+        document.querySelectorAll        document.querySelectorAll('.tab-btn').('.tabforEach(t => t.classList.remove-btn').forEach(t => t('active'));
+        document.querySelectorAll('..classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.removesection').forEach(s => s('active.classList.remove('active'));
+        this.classList.add(''));
+        this.classListactive');
+        document.add('active');
+        document.getElementById('dashboardSection.getElementById('dashboardSection').classList.add').classList.add('active');
+   ('active');
+    };
+
+    document.getElementById };
+
+    document.getElementById('tabAdd').onclick = function('tabAdd').onclick = function() {
+        document() {
+        document.querySelectorAll('.tab-btn')..querySelectorAll('.tab-btn').forEach(t => tforEach(t => t.classList.remove('active.classList.remove('active'));
+        document.querySelector'));
+        document.querySelectorAll('.section').All('.section').forEach(s => sforEach(s => s.classList.remove('active.classList.remove('active'));
+        this.classList'));
+        this.classList.add('active');
+        document.getElementById('.add('active');
+        document.getElementById('addSection').classaddSection').classList.add('active');
+       List.add('active');
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+    };
+
+    document.getElementById('tabBulk').onclick = function() {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('bulkSection').classList.add('active');
+    };
+
+    document.getElementById('tabHolidays').onclick = function() {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('holidaysSection').classList.add('active');
+        display document.getElementById('date').value = new Date().toISOString().split('T')[0];
+    };
+
+    document.getElementById('tabBulk').onclick = function() {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('bulkSection').classList.add('active');
+    };
+
+    document.getElementById('tabHolidays').onclick = function() {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('holidaysSection').classList.add('active');
+        displayHolidays();
+    };
+
+    document.getElementById('tabReports').onclick = function() {
+        document.querySelectorAll('.tab-btnHolidays();
+    };
+
+    document.getElementById('tabReports').onclick = function() {
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+').forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById        this.classList.add('active');
+        document.getElementById('re('reportsSection').classportsSection').classList.add('active');
+       List.add('active');
+        updateReports();
+    updateReports();
+    };
+
+    // = };
+
+    // ==================== GOAL=================== GOAL MANAGEMENT ====================
+    // Click MANAGEMENT ====================
+    goal chip to // Click goal chip to edit
+    document.getElementById edit
+    document.getElementById('goalChip').onclick = function()('goalChip').onclick = function() {
+        const input = document.getElementById('goalInput {
+        const input = document.getElementById('goalInput');
+        const new');
+        const newGoal =Goal = prompt('Enter your target prompt('Enter your target hours:', goalHours);
+        if ( hours:', goalHours);
+        if (newGoal &&newGoal && !isNaN(newGoal !isNaN) && parseInt(newGoal) > (newGoal) && parseInt(newGoal)0) {
+            > 0) {
+            goalHours = parseInt(newGoal);
+            goalHours = parseInt(newGoal);
+            document.getElementById('goalDisplay').innerText = goalHours;
+ document.getElementById('goalDisplay').innerText = goalHours;
+            document.getElementById('goalDisplay2').            document.getElementById('goalDisplay2').innerText = goalHours;
+innerText = goalHours;
+            document.getElementById('goalInput').value = goalHours;
+            document.getElementById('goalInput').value = goalHours;
+            save            saveGoal();
+            updateAll();
+            showToast(`Goal updated to ${goalHours} hours!`);
+        }
+    };
+
+    // ==================== SAVE ENTRY ====================
+    document.getElementById('saveBtn').onclick = function() {
+        const date = document.getElementById('date').value;
+        const timeIn = document.getElementById('timeIn').value;
+        const timeOut = document.getElementById('timeOut').value;
+        const breakMin = document.getElementById('break').value;
+        const category = document.getElementById('category').value;
+        const remarks = document.getElementById('remarks').value;
+        const isHoliday = document.getElementById('isHoliday').checked;
+
+        if (!date) {
+            showToast('Please select date', 'error');
+            return;
+        }
+
+        const hours = calcHours(timeIn, timeOut, breakMin, isHoliday);
+
+        const entry = {
+            id: Date.now().toString(),
+            date, timeIn, timeOut,
+            break: breakMin,
+           Goal();
+            updateAll();
+            showToast(`Goal updated to ${goalHours} hours!`);
+        }
+    };
+
+    // ==================== SAVE ENTRY ====================
+    document.getElementById('saveBtn').onclick = function() {
+        const date = document.getElementById('date').value;
+        const timeIn = document.getElementById('timeIn').value;
+        const timeOut = document.getElementById('timeOut').value;
+        const breakMin = document.getElementById('break').value;
+        const category = document.getElementById('category').value;
+        const remarks = document.getElementById('remarks').value;
+        const isHoliday = document.getElementById('isHoliday').checked;
+
+        if (!date) {
+            showToast('Please select date', 'error');
+            return;
+        }
+
+        const hours = calcHours(timeIn, timeOut, breakMin, isHoliday);
+
+        const entry = {
+            id: Date.now().toString(),
+            date, timeIn, timeOut,
+            break: breakMin,
+            category, remarks,
+            isHolid category, remarks,
+            isHoliday, hours
+        };
+
+        const existing = entries.findIndex(e => e.date === date);
+        if (existing >= 0) {
+            if (confirm('Replace existing entry?')) entries[existing] = entry;
+            else return;
+ay, hours
+        };
+
+        const existing = entries.findIndex(e => e.date === date);
+        if (existing >= 0) {
+            if (confirm('Replace existing entry?')) entries[existing] = entry;
+            else return;
+        } else {
+            entries.push(entry);
+        }
+
+        entries.sort((a, b) => new Date(b.date) - new        } else {
+            entries.push(entry);
+        }
+
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        save Date(a.date));
+        saveData();
+Data();
+        updateAll();
+        show        updateAll();
+        showToast('Entry savedToast('Entry saved!');
+        document!');
+        document.getElementById('tabDashboard').click.getElementById('tabDashboard').click();
+    };
+
+    // =();
+    };
+
+    // ======================================= BULK PREVIEW = BULK PREVIEW ====================
+    document.getElementById===================
+    document.getElementById('pre('previewBtn').onclick =viewBtn').on function() {
+        const from = new Date(documentclick = function() {
+        const from = new Date(document.getElementById('bulkFromDate.getElementById('bulk').value);
+        const toFromDate').value);
+        const to = new Date(document = new.getElementById('bulkToDate Date(document.getElementById('bulk').value);
+       ToDate').value);
+        const skipWeekends = document const skipWeekends = document.getElementById('bulk.getElementById('SkipWeekends').checked;
+bulkSkipWeekends').        const skipHolidays = document.getElementById('bulkSkipHolidays').checked;
+        const timeIn = document.getElementById('bulkTimeIn').value;
+        const timeOut = document.getElementById('bulkTimeOut').value;
+        const breakMin = document.getElementById('bulkBreak').value;
+
+        bulkPreview = [];
+        let current = new Date(from);
+
+        while (current <= to) {
+            const dateStr = current.toISOString().split('T')[0];
+            let include = true;
+            if (skipWeekends && isWeekend(dateStr)) include = false;
+            if (skipHolidays && isHoliday(dateStr)) include = false;
+
+            if (include) {
+                bulkPreview.push({
+                    date: dateStr,
+                    timeIn, timeOut,
+                    break: breakMin,
+                    hours: calcHours(timechecked;
+        const skipHolidays = document.getElementById('bulkSkipHolidays').checked;
+        const timeIn = document.getElementById('bulkTimeIn').value;
+        const timeOut = document.getElementById('bulkTimeOut').value;
+        const breakMin = document.getElementById('bulkBreak').value;
+
+        bulkPreview = [];
+        let current = new Date(from);
+
+        while (current <= to) {
+            const dateStr = current.toISOString().split('T')[0];
+            let include = true;
+            if (skipWeekends && isWeekend(dateStr)) include = false;
+            if (skipHolidays && isHoliday(dateStr)) include = false;
+
+            if (include) {
+                bulkPreview.push({
+                    date: dateStr,
+                    timeIn, timeOut,
+                    break: breakMin,
+                    hours: calcHours(timeIn, timeOut, breakMin, false)
+                });
+            }
+            current.setDate(current.getDate() + 1);
+        }
+
+        let html = '<table><tr><th>Date</th><th>Day</th><th>Hours</th></tr>';
+        bulkPreview.forEach(e => {
+            const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' });
+            html += `<tr><td>${e.date}</td><td>${day}</td><td>${e.hours.toIn, timeOut, breakMin, false)
+                });
+            }
+            current.setDate(current.getDate() + 1);
+        }
+
+        let html = '<table><tr><th>Date</th><th>Day</th><th>Hours</th></tr>';
+        bulkPreview.forEach(e => {
+            const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' });
+            html += `<tr><td>${e.date}</td><td>${day}</td><td>${e.hours.toFixed(1)}</td></tr>`;
+        });
+        document.getElementById('bulkPreviewTable').innerHTML =Fixed(1)}</td></tr>`;
+        });
+        document.getElementById('bulkPreviewTable').innerHTML = html;
+        document.getElementById('bulkPreviewArea').style.display = html;
+        document.getElementById('bulkPreviewArea').style.display = 'block';
+    'block';
+    };
+
+    document.getElementById };
+
+    document.getElementById('saveBulkBtn').('saveBulkBtn').onclick = function() {
+onclick = function() {
+        let        let added = added = 0 0;
+       ;
+        bulkPreview.forEach(newEntry => {
+            const fullEntry = {
+                ...newEntry,
+                id: Date.now() + added,
+                category: 'IT/Software',
+                remarks: 'Bulk import',
+                isHoliday: false
+            };
+            const existing = entries.findIndex(e => e.date === newEntry.date);
+            if (existing >= 0) entries[existing] = fullEntry;
+            else entries.push(fullEntry);
+            added++;
+        });
+
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        saveData();
+        updateAll();
+        document.getElementById('bulkPreviewArea').style.display = 'none';
+        showToast(`Added ${added} entries!`);
+        document.getElementById('tabDashboard').click();
+    };
+
+    // ==================== EDIT ====================
+    function editEntry(id) {
+        const e = entries.find bulkPreview.forEach(newEntry => {
+            const fullEntry = {
+                ...newEntry,
+                id: Date.now() + added,
+                category: 'IT/Software',
+                remarks: 'Bulk import',
+                isHoliday: false
+            };
+            const existing = entries.findIndex(e => e.date === newEntry.date);
+            if (existing >= 0) entries[existing] = fullEntry;
+            else entries.push(fullEntry);
+            added++;
+        });
+
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        save(e => e.id === id);
+        if (!e) return;
+
+        document.getElementById('editId').value = e.id;
+        document.getElementById('editDate').value = e.date;
+        documentData();
+        updateAll();
+        document.getElementById('bulkPreviewArea').style.display = 'none';
+        showToast(`Added ${added} entries!`);
+        document.getElementById('tabDashboard').click();
+    };
+
+    // ==================== EDIT ====================
+    function editEntry(id) {
+        const e = entries.find(e => e.id === id);
+        if (!e) return;
+
+        document.getElementById('editId').value = e.id;
+        document.getElementById('editDate').value = e.date;
+        document.getElementById('editTimeIn').value = e.timeIn;
+        document.getElementById('editTimeIn').value = e.timeIn;
+        document.getElementById('editTimeOut')..getElementById('editTimeOut').value = e.timeOut;
+value = e.timeOut;
+        document        document.getElementById('editBreak').value.getElementById('editBreak').value = e.break = e.break;
+        document.getElementById;
+        document.getElementById('editCategory').value =('editCategory'). e.category;
+       value = e.category;
+        document.getElementById('edit document.getElementById('editRemarksRemarks').value').value = e = e.remarks.remarks || '';
+        document || '';
+        document.getElementById('editIsHolid.getElementById('editIsHoliday').ay').checked =checked = e.is e.isHoliday || false;
+
+Holiday || false;
+
+        document.getElementById('editModal').class        document.getElementById('editModal').classList.addList.add('active');
+   ('active');
+    }
+
+    document.getElementById }
+
+    document.getElementById('edit('editForm').onsubmit =Form').onsubmit = function(e function(e) {
+        e) {
+        e.preventDefault();
+.preventDefault();
+        const id =        const id = document.getElementById('edit document.getElementById('editId').value;
+        const index =Id').value;
+        const index = entries.find entries.findIndex(eIndex(e => e.id === => e.id === id);
+        if id);
+        if (index (index >= 0) >= 0) {
+            {
+            const isHolid const isHoliday = document.getElementById('editay = document.getElementById('editIsHoliday').checked;
+            entries[index] = {
+                ...entries[index],
+                date: document.getElementById('editDate').value,
+                timeIn: document.getElementById('editTimeIn').value,
+                timeOut: document.getElementById('editTimeOut').value,
+                break: parseInt(document.getElementById('editBreak').value),
+                category: document.getElementById('editCategory').value,
+                remarks: document.getElementById('editRemarks').value,
+                isHoliday,
+                hours: calcHours(
+                    document.getElementById('editTimeIn').value,
+                    document.getElementById('editTimeOut').value,
+                    document.getElementById('editBreak').value,
+                    isHoliday
+                )
+            };
             saveData();
             updateAll();
-            showToast('Entry saved!');
-            document.getElementById('tabDashboard').click();
-        };
+            closeModal();
+            showToast('Entry updated!');
+        }
+    };
 
-        // ==================== BULK PREVIEW ====================
-        document.getElementById('previewBtn').onclick = function() {
-            const from = new Date(document.getElementById('bulkFromDate').value);
-            const to = new Date(document.getElementById('bulkToDate').value);
-            const skipWeekends = document.getElementById('bulkSkipWeekends').checked;
-            const skipHolidays = document.getElementById('bulkSkipHolidays').checked;
-            const timeIn = document.getElementById('bulkTimeIn').value;
-            const timeOut = document.getElementById('bulkTimeOut').value;
-            const breakMin = document.getElementById('bulkBreak').value;
-
-            bulkPreview = [];
-            let current = new Date(from);
-
-            while (current <= to) {
-                const dateStr = current.toISOString().split('T')[0];
-                let include = true;
-                if (skipWeekends && isWeekend(dateStr)) include = false;
-                if (skipHolidays && isHoliday(dateStr)) include = false;
-
-                if (include) {
-                    bulkPreview.push({
-                        date: dateStr,
-                        timeIn, timeOut,
-                        break: breakMin,
-                        hours: calcHours(timeIn, timeOut, breakMin, false)
-                    });
-                }
-                current.setDate(current.getDate() + 1);
-            }
-
-            let html = '<table><tr><th>Date</th><th>Day</th><th>Hours</th></tr>';
-            bulkPreview.forEach(e => {
-                const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'short' });
-                html += `<tr><td>${e.date}</td><td>${day}</td><td>${e.hours.toFixed(1)}</td></tr>`;
-            });
-            html += '</table>';
-
-            document.getElementById('bulkPreviewTable').innerHTML = html;
-            document.getElementById('bulkPreviewArea').style.display = 'block';
-        };
-
-        // ==================== SAVE BULK ====================
-        document.getElementById('saveBulkBtn').onclick = function() {
-            let added = 0;
-            bulkPreview.forEach(newEntry => {
-                const fullEntry = {
-                    ...newEntry,
-                    id: Date.now() + added,
-                    category: 'IT/Software',
-                    remarks: 'Bulk import',
-                    isHoliday: false
-                };
-                const existing = entries.findIndex(e => e.date === newEntry.date);
-                if (existing >= 0) entries[existing] = fullEntry;
-                else entries.push(fullEntry);
-                added++;
-            });
-
-            entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+    function deleteEntry(id) {
+        if (confirm('Delete this entry?')) {
+            entries = entries.filterIsHoliday').checked;
+            entries[index] = {
+                ...entries[index],
+                date: document.getElementById('editDate').value,
+                timeIn: document.getElementById('editTimeIn').value,
+                timeOut: document.getElementById('editTimeOut').value,
+                break: parseInt(document.getElementById('editBreak').value),
+                category: document.getElementById('editCategory').value,
+                remarks: document.getElementById('editRemarks').value,
+                isHoliday,
+                hours: calcHours(
+                    document.getElementById('editTimeIn').value,
+                    document.getElementById('editTimeOut').value,
+                    document.getElementById('editBreak').value,
+                    isHoliday
+                )
+            };
             saveData();
             updateAll();
-            document.getElementById('bulkPreviewArea').style.display = 'none';
-            showToast(`Added ${added} entries!`);
-            document.getElementById('tabDashboard').click();
-        };
-
-        // ==================== EDIT ====================
-        function editEntry(id) {
-            const e = entries.find(e => e.id === id);
-            if (!e) return;
-
-            document.getElementById('editId').value = e.id;
-            document.getElementById('editDate').value = e.date;
-            document.getElementById('editTimeIn').value = e.timeIn;
-            document.getElementById('editTimeOut').value = e.timeOut;
-            document.getElementById('editBreak').value = e.break;
-            document.getElementById('editCategory').value = e.category;
-            document.getElementById('editRemarks').value = e.remarks || '';
-            document.getElementById('editIsHoliday').checked = e.isHoliday || false;
-
-            document.getElementById('editModal').classList.add('active');
+            closeModal();
+            showToast('Entry updated!');
         }
+    };
 
-        document.getElementById('editForm').onsubmit = function(e) {
-            e.preventDefault();
-            const id = document.getElementById('editId').value;
-            const index = entries.findIndex(e => e.id === id);
-            if (index >= 0) {
-                const isHoliday = document.getElementById('editIsHoliday').checked;
-                entries[index] = {
-                    ...entries[index],
-                    date: document.getElementById('editDate').value,
-                    timeIn: document.getElementById('editTimeIn').value,
-                    timeOut: document.getElementById('editTimeOut').value,
-                    break: parseInt(document.getElementById('editBreak').value),
-                    category: document.getElementById('editCategory').value,
-                    remarks: document.getElementById('editRemarks').value,
-                    isHoliday,
-                    hours: calcHours(
-                        document.getElementById('editTimeIn').value,
-                        document.getElementById('editTimeOut').value,
-                        document.getElementById('editBreak').value,
-                        isHoliday
-                    )
-                };
-                saveData();
-                updateAll();
-                closeModal();
-                showToast('Entry updated!');
-            }
-        };
-
-        function deleteEntry(id) {
-            if (confirm('Delete this entry?')) {
-                entries = entries.filter(e => e.id !== id);
-                saveData();
-                updateAll();
-                showToast('Entry deleted');
-            }
+    function deleteEntry(id) {
+        if (confirm('Delete this entry?')) {
+            entries = entries.filter(e => e.id !== id);
+            saveData();
+            updateAll();
+            showToast('Entry deleted');
         }
+    }
 
-        function closeModal() {
-            document.getElementById('editModal').classList.remove('active');
+    function closeModal() {
+        document.getElementById('editModal').classList.remove('active(e => e.id !== id);
+            saveData();
+            updateAll();
+            showToast('Entry deleted');
         }
+    }
 
-        // ==================== HOLIDAYS ====================
-        document.getElementById('addHolidayBtn').onclick = function() {
-            const date = document.getElementById('holidayDate').value;
-            const name = document.getElementById('holidayName').value;
-            if (!date || !name) {
-                showToast('Enter date and name', 'error');
-                return;
-            }
-            if (holidays.some(h => h.date === date)) {
-                showToast('Holiday already exists', 'error');
-                return;
-            }
-            holidays.push({ date, name });
-            holidays.sort((a, b) => new Date(a.date) - new Date(b.date));
+    function closeModal() {
+        document.getElementById('editModal').classList.remove('active');
+    }
+
+    // ====================');
+    }
+
+    // = HOLIDAYS ====================
+    document.getElementById('=================== HOLIDAYS ====================
+    document.getElementById('addHaddHolidayBtn').onclickolidayBtn').onclick = function() {
+        const date = document.getElementById = function() {
+        const date =('holidayDate').value;
+        document.getElementById('holidayDate const name = document.getElementById('holiday').value;
+        const name = document.getElementById('Name').value;
+        ifholidayName').value;
+        if (!date || !name) {
+            showToast('Enter date and name', 'error');
+            (!date || !name) {
+            showToast('Enter date and name', 'error');
+            return;
+        }
+        if (hol return;
+        }
+        if (holidays.someidays.some(h =>(h => h.date h.date === date)) {
+ === date            showToast('Holiday already)) {
+            showToast('Holiday already exists', 'error');
+            exists', 'error');
+            return;
+        }
+ return;
+        }
+        holidays.push({ date,        holidays.push({ date, name });
+        holidays.sort(( name });
+        holidays.sort((a, b)a, b) => new Date(a => new Date(a.date) - new Date(b.date) - new Date(b.date));
+        saveHolid.date));
+        saveHolidays();
+        displayays();
+        displayHolidays();
+Holidays();
+        updateAll();
+        show        updateAll();
+        showToast('Holiday addedToast('Holiday added!');
+        document.getElementById('holidayDate').value = '';
+        document.getElementById('holidayName').value = '';
+    };
+
+    function deleteHoliday(date) {
+        if (confirm('Remove this holiday?')) {
+            holidays = holidays.filter(h => h.date !== date);
             saveHolidays();
             displayHolidays();
             updateAll();
-            showToast('Holiday added!');
-            document.getElementById('holidayDate').value = '';
-            document.getElementById('holidayName').value = '';
-        };
+            showToast('Holiday removed');
+        }
+    }
 
-        function deleteHoliday(date) {
-            if (confirm('Remove this holiday?')) {
-                holidays = holidays.filter(h => h.date !== date);
-                saveHolidays();
-                displayHolidays();
-                updateAll();
-                showToast('Holiday removed');
-            }
+    // ==================== EXPORT ====================
+    document.getElementById('exportBtn').onclick = function() {
+        if (entries.length === 0) {
+            showToast('No entries', 'error');
+            return;
+        }
+        let csv = 'Date,Day,Time In,Time Out,Break,Hours,Category,Remarks\n';
+        entries.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
+            const day = new Date(e.date).toLocale!');
+        document.getElementById('holidayDate').value = '';
+        document.getElementById('holidayName').value = '';
+    };
+
+    function deleteHoliday(date) {
+        if (confirm('Remove this holiday?')) {
+            holidays = holidays.filter(h => h.date !== date);
+            saveHolidays();
+            displayHolidays();
+            updateAll();
+            showToast('Holiday removed');
+        }
+    }
+
+    // ==================== EXPORT ====================
+    document.getElementById('exportBtn').onclick = function() {
+        if (entries.length === 0) {
+            showToast('No entries', 'error');
+            return;
+        }
+        let csv = 'Date,Day,Time In,Time Out,Break,Hours,Category,Remarks\n';
+        entries.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
+            const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'long' });
+            csv += `${e.date},${day},${e.timeIn},${e.timeOut},${e.break},${e.hours.toFixed(2)},${e.category},${e.remarks || ''}\n`;
+DateString('en-US', { weekday: 'long' });
+            csv += `${e.date},${day},${e.timeIn},${e.timeOut},${e.break},${e.hours.toFixed(2)},${e.category},${e.remarks || ''}\n`;
+        });
+        });
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a);
+        const a = document = document.createElement('a');
+        a.href = url;
+       .createElement('a');
+        a.href = url;
+        a.download = `dtr_ a.download = `dtr_${new Date().toISOString().split('T${new Date().toISOString().split('')[0]}.csv`;
+       T')[0]}.csv a.click();
+        showToast('CSV exported`;
+        a.click();
+        showToast('CSV exported!');
+    };
+
+    document.getElementById('!');
+    };
+
+    document.getElementById('printBtn').onclick = function()printBtn').onclick = {
+        window.print function() {
+        window.print();
+    };
+
+    document.getElementById('clear();
+    };
+
+    document.getElementById('clearBtn').onclickBtn').onclick = function = function() {
+        if (confirm() {
+        if (confirm('DELETE ALL ENT('DELETE ALL ENTRIES?')) {
+            entries =RIES?')) {
+            [];
+            saveData entries = [];
+            saveData();
+            updateAll();
+           ();
+            updateAll();
+            showToast('All showToast cleared');
+        }
+    };
+
+    document.getElementById('filterBtn').onclick = function() {
+        const from = document.getElementById('filterFrom').value;
+        const to = document.getElementById('filterTo').value;
+        let filtered = entries;
+        if (from) filtered = filtered.filter(e => e.date >= from);
+        if (to) filtered = filtered.filter(e => e.date <= to);
+
+        if (filtered.length === 0) {
+            document.getElementById('filteredTable').innerHTML = '<p style="color: #94a3b8; padding: 20px;">No entries</p>';
+            return;
         }
 
-        // ==================== EXPORT ====================
-        document.getElementById('exportBtn').onclick = function() {
-            if (entries.length === 0) {
-                showToast('No entries', 'error');
-                return;
-            }
-            let csv = 'Date,Day,Time In,Time Out,Break,Hours,Category,Remarks\n';
-            entries.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
-                const day = new Date(e.date).toLocaleDateString('en-US', { weekday: 'long' });
-                csv += `${e.date},${day},${e.timeIn},${e.timeOut},${e.break},${e.hours.toFixed(2)},${e.category},${e.remarks || ''}\n`;
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `dtr_240_${new Date().toISOString().split('T')[0]}.csv`;
-            a.click();
-            showToast('CSV exported!');
-        };
+        let html = '<table><tr><th>Date</th><th>Hours</th></tr>';
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
+            html += `<tr><td('All cleared');
+        }
+    };
 
-        document.getElementById('printBtn').onclick = function() {
-            window.print();
-        };
+    document.getElementById('filterBtn').onclick = function() {
+        const from = document.getElementById('filterFrom').value;
+        const to = document.getElementById('filterTo').value;
+        let filtered = entries;
+        if (from) filtered = filtered.filter(e => e.date >= from);
+        if (to) filtered = filtered.filter(e => e.date <= to);
 
-        document.getElementById('clearBtn').onclick = function() {
-            if (confirm('DELETE ALL ENTRIES?')) {
-                entries = [];
-                saveData();
-                updateAll();
-                showToast('All cleared');
-            }
-        };
-
-        document.getElementById('filterBtn').onclick = function() {
-            const from = document.getElementById('filterFrom').value;
-            const to = document.getElementById('filterTo').value;
-            let filtered = entries;
-            if (from) filtered = filtered.filter(e => e.date >= from);
-            if (to) filtered = filtered.filter(e => e.date <= to);
-
-            if (filtered.length === 0) {
-                document.getElementById('filteredTable').innerHTML = '<p style="color: #94a3b8; padding: 30px;">No entries</p>';
-                return;
-            }
-
-            let html = '<table><tr><th>Date</th><th>Hours</th><th>Category</th></tr>';
-            filtered.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
-                html += `<tr><td>${e.date}</td><td>${e.hours.toFixed(1)}</td><td>${e.category}</td></tr>`;
-            });
-            document.getElementById('filteredTable').innerHTML = html;
-        };
-
-        // ==================== TOAST ====================
-        function showToast(msg, type = 'success') {
-            const toast = document.getElementById('toast');
-            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${msg}`;
-            toast.style.display = 'flex';
-            toast.style.borderLeftColor = type === 'success' ? '#10b981' : '#ef4444';
-            setTimeout(() => toast.style.display = 'none', 3000);
+        if (filtered.length === 0) {
+            document.getElementById('filteredTable').innerHTML = '<p style="color: #94a3b8; padding: 20px;">No entries</p>';
+            return;
         }
 
-        // ==================== INIT ====================
-        loadData();
-        window.onclick = function(e) {
-            if (e.target.classList.contains('modal')) closeModal();
-        };
-    </script>
+        let html = '<table><tr><th>Date</th><th>Hours</th></tr>';
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(e => {
+            html += `<tr><td>${e.date}</td><td>${e.hours.toFixed(1)}</td></tr>`;
+        });
+        document.getElementById('filteredTable').innerHTML = html;
+    };
+
+    // ==================== TOAST ====================
+>${e.date}</td><td>${e.hours.toFixed(1)}</td></tr>`;
+        });
+        document.getElementById('filteredTable').innerHTML = html;
+    };
+
+    // ==================== TOAST ====================
+    function showToast(msg, type = 'success    function showToast(msg, type = 'success') {
+') {
+        const toast = document.getElementById('toast');
+        const toast = document.getElementById('toast');
+        toast.innerHTML = `<i        toast.innerHTML = `<i class="fas fa-${type === 'success' ? class="fas fa-${type === 'success' 'check-circle' : ' ? 'check-circle'exclamation-circle'} : 'exclamation-circle'}"></i> ${msg}`;
+       "></i> ${msg}`;
+        toast.style.display = 'flex';
+        toast.style toast.style.display = 'flex';
+        toast.style.borderLeftColor = type === '.borderLeftColor = type === 'success' ? '#10b981'success' ? '#10b : '#ef444981' : '#4';
+        setTimeout(() =>ef4444';
+        setTimeout toast.style.display =(() => toast.style.display = 'none', 3000 'none', 300);
+    }
+
+   0);
+    // ==================== INIT = }
+
+    // =======================================
+    loadData INIT ====================
+    loadData();
+    
+    // Set today's date();
+    
+    // Set today
+    document.getElementById('date').value's date
+    document.getElementById('date = new Date().toISOString().split('').value = new Date().toISOString().split('T')[0];
+    
+    // Close modal whenT')[0];
+    
+    // Close clicking outside
+    window.on modal when clicking outside
+    window.onclick = function(e) {
+click = function(e) {
+        if (e.target.classList.contains('modal')) closeModal();
+    };
+</script>
 </body>
 </html>
